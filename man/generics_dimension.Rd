@@ -15,14 +15,14 @@
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-    prisma dimension object generated via \code{\link{estimateDimension}}
+    PRISMA dimension object generated via \code{\link{estimateDimension}}
 }
   \item{...}{
-    Not used
+    not used
 }
 }
 \author{
-Tammo Krueger <t.krueger@tu-berlin.de>
+Tammo Krueger <tammokrueger@googlemail.com>
 }
 \seealso{
 \code{\link{estimateDimension}}, \code{\link{prismaHclust}}, \code{\link{prismaDuplicatePCA}}, \code{\link{prismaNMF}}

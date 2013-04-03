@@ -8,25 +8,25 @@ PRISMA - Protocol Inspection and State Machine Analysis
 \description{
 The PRISMA package is capable of loading and processing
 huge text corpora processed with the sally toolbox
-(\url{http://www.mlsec.org/sally/}). sally acts as a ver fast preprocessor which
+(\url{http://www.mlsec.org/sally/}). sally acts as a very fast preprocessor which
 splits the text files into tokens or n-grams. These output files can
 then be read with the PRISMA package which applies testing-based
-token selection and has some duplicat-aware, highly tuned Non-Negative
-Matrix Factorzation and Principal component Analysis implementation
+token selection and has some replicate-aware, highly tuned non-negative
+matrix factorization and principal component analysis implementation
 which allows the processing of very big data sets even on desktop machines.
 }
 \details{
 \tabular{ll}{
 Package: \tab PRISMA\cr
 Type: \tab Package\cr
-Version: \tab 0.1\cr
-Date: \tab 2012-10-02\cr
+Version: \tab 0.2\cr
+Date: \tab 2013-04-03\cr
 License: \tab GPL (>=2.0)\cr
 }
 }
 \author{Tammo Krueger, Nicole Kraemer
 
-Maintainer: Tammo Krueger <t.krueger@tu-berlin.de>
+Maintainer: Tammo Krueger <tammokrueger@googlemail.com>
 }
 \references{
 Krueger, T., Gascon, H., Kraemer, N., Rieck, K. (2012)

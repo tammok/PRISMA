@@ -13,6 +13,6 @@ ASAP: Automatic Semantics-Aware Analysis of Network Payloads
 \emph{Privacy and Security Issues in Data Mining and Machine Learning - International ECML/PKDD Workshop. Lecture Notes in Computer Science 6549}, Springer. 50 - 63
 }
 \author{
-Tammo Krueger <t.krueger@tu-berlin.de>
+Tammo Krueger <tammokrueger@googlemail.com>
 }
 \keyword{datasets}

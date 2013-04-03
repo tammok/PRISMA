@@ -28,7 +28,9 @@ estimateDimension = function(prismaData, alpha=0.05, nScrambleSamples=NULL) {
   norm = data$low[data$class == "norm"]
   scramble = data$up[data$class == "scramble"]
   dim = 2 * (match(TRUE, norm <= scramble) - 1)
-
+  if (dim == 0) {
+    warning("Not enough data for reasonable dimension estimation. Please adjust $dim according to your fallback heuristic!")
+  }
   ret = list(data=data, dim=dim, pca=pca)
   class(ret) = "prismaDimension"
   return(ret)

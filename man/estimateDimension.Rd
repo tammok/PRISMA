@@ -29,11 +29,11 @@ estimateDimension(prismaData, alpha = 0.05, nScrambleSamples = NULL)
   \item{estDim}{prismaDimension object that can be printed and plotted.}
 }
 \references{
-R.~Schmidt. Multiple emitter location and signal parameter estimation.
+R. Schmidt. Multiple emitter location and signal parameter estimation.
 \emph{IEEE Transactions on Antennas and Propagation}, 34(3):276 -- 280, 1986.
 }
 \author{
-Tammo Krueger <t.krueger@tu-berlin.de>
+Tammo Krueger <tammokrueger@googlemail.com>
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~

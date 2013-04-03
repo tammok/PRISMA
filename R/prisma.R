@@ -1,7 +1,7 @@
 # public functions:
-loadPrismaData = function(path, maxLines=-1, fastSally=TRUE, alpha=.05) {
+loadPrismaData = function(path, maxLines=-1, fastSally=TRUE, alpha=.05, skipFeatureCorrelation=FALSE) {
   data = readPrismaInput(path, maxLines, fastSally)
-  data = preprocessPrismaData(data, alpha)
+  data = preprocessPrismaData(data, alpha, skipFeatureCorrelation)
   data$path = path
   class(data) = "prisma"
   return(data)
@@ -10,6 +10,18 @@ loadPrismaData = function(path, maxLines=-1, fastSally=TRUE, alpha=.05) {
 getDuplicateData = function(prismaData) {
   return(prismaData$data[, prismaData$remapper])
 }
+
+corpusToPrisma = function(corpus, alpha=.05, skipFeatureCorrelation=FALSE) {
+  require(Matrix)
+  require(tm)
+  tdm = TermDocumentMatrix(corpus)
+  data = list(data=Matrix(as.matrix(tdm)))
+  data = preprocessPrismaData(data, alpha, skipFeatureCorrelation)
+  data$path = "tm-Corpus"
+  class(data) = "prisma"
+  return(data)
+}
+
 
 print.prisma = function(x, ...) {
 	prismaData=x
@@ -139,9 +151,9 @@ calcClassForSparseMatrix = function(data) {
   sapply(1:ncol(data), oneClass)
 }
 
-preprocessPrismaData =function(data, alpha=.05) {
+preprocessPrismaData =function(data, alpha=.05, skipFeatureCorrelation=FALSE) {
   data$unprocessed = data$data
-  processed = filterDataByTestAndCor(data$data, alpha)
+  processed = filterDataByTestAndCor(data$data, alpha, skipFeatureCorrelation)
   duplicatesRemoved = duplicateRemover(processed$mat)
   data$data = duplicatesRemoved$data
   data$remapper = duplicatesRemoved$remapper
@@ -288,24 +300,34 @@ ttestNgrams = function(data, mu, alternative=c("greater", "less")) {
   return(pValues)
 }
 
-filterDataByTestAndCor = function(data, alpha=0.05) {
+filterDataByTestAndCor = function(data, alpha=0.05, skipFeatureCorrelation=FALSE) {
   data = count2bin(data)
-  never = ttestNgrams(data, 0, "greater")
-  always = ttestNgrams(data, 1, "less")
-
-  alwaysP = p.adjust(always, "holm")
-  neverP = p.adjust(never, "holm")
   if (is.null(alpha)) {
-    keep = (alwaysP != 1)
+    #keep = (alwaysP != 1)
+    keep = rep(TRUE, nrow(data))
   }
   else {
+    never = ttestNgrams(data, 0, "greater")
+    always = ttestNgrams(data, 1, "less")
+    
+    alwaysP = p.adjust(always, "holm")
+    neverP = p.adjust(never, "holm")
     keep = (alwaysP < alpha & neverP < alpha)
   }
   allStr = rownames(data)
   fdata = data[keep, ]
-  dataAndGroup = compressByGroup(fdata)
+  if (skipFeatureCorrelation) {
+    features = rownames(fdata)
+    groups = 1:length(features)
+    names(groups) = features
+    dataAndGroup =list(data=fdata, group=groups)
+  }
+  else {
+    dataAndGroup = compressByGroup(fdata)
+  }
   if (is.null(alpha)) {
-    always = allStr[(alwaysP == 1)]
+    #always = allStr[(alwaysP == 1)]
+    always = c()
     never = c()
   }
   else {

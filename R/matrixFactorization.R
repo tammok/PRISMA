@@ -1,5 +1,10 @@
 # public methods
 
+getMatrixFactorizationLabels = function(prismaMF) {
+  labels = apply(prismaMF$C, 2, which.max)
+  return(labels[prismaMF$remapper])
+}
+
 prismaHclust = function(prismaData, ncomp, method="single") {
   mat = prismaData$data
   d = dist(t(mat), "binary")
@@ -52,6 +57,9 @@ prismaNMF = function(prismaData, ncomp, time=60, pca.init=TRUE, doNorm=TRUE, old
       B = genBase(pca$B[, 1:k])
     }
     k = 2*k
+  }
+  else {
+    k = ncomp
   }
   weights = prismaData$duplicatecount
   ret = pmf(mat, k, calcTime=time, B=B, doNorm=doNorm, weights=weights)
