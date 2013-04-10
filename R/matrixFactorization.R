@@ -211,25 +211,38 @@ calcLinesPerThreshold = function(B, n.lines) {
   return(B)
 }
 
-
+# pimped speed by crossprod...
+# see Least Squares Calculations in R by D.M. Bates in R News, 4/1:17-20
 RRbyCV = function(Y, D, fold=5, lambdas=10^(-4:2), weights=NULL) {
   # Y is the data assumed to be [# samples X # vars]
   N = nrow(Y)
   F = ncol(D)
   Nfold = floor(N / fold)
   res = matrix(0, length(lambdas), fold, dimnames=list(as.character(lambdas), NULL))
+  if (!is.null(weights)) {
+    sweights = sqrt(weights)
+  }
   for (l in lambdas) {
     for (f in 1:fold) {
       index = ((f-1)*Nfold + 1):(f * Nfold)
       Sub = D[-index, ]
       # estimate the coefficients on the subsample
       if (is.null(weights)) {
-        Beta = solve(t(Sub) %*% Sub + diag(l, F)) %*% t(Sub) %*% Y[-index, ]
+        #Beta1 = solve(t(Sub) %*% Sub + diag(l, F)) %*% t(Sub) %*% Y[-index, ]
+        Beta2 = solve(crossprod(Sub) + diag(l, F), crossprod(Sub, Y[-index, ]))
+        #cat(" No weights", round(mean(abs(Beta1 - Beta2)), 6))
+        Beta = Beta2
         res[as.character(l), f] = sqrt(sum((Y[index, ] - (D[index, ] %*% Beta))^2))
       }
       else {
-        W = Diagonal(x=weights[-index])
-        Beta = solve(t(Sub) %*% W %*% Sub + diag(l, F)) %*% t(Sub) %*% W %*% Y[-index, ]
+        #W = Diagonal(x=weights[-index])
+        #Beta1 = solve(t(Sub) %*% W %*% Sub + diag(l, F)) %*% t(Sub) %*% W %*% Y[-index, ]
+        W = Diagonal(x=sweights[-index])
+        WSub = W %*% Sub
+        WY = W %*% Y[-index, ]
+        Beta2 = solve(crossprod(WSub) + diag(l, F), crossprod(WSub, WY))
+        #cat(" Weights", round(mean(abs(Beta1 - Beta2)), 6))
+        Beta = Beta2
         res[as.character(l), f] = sqrt(sum((Y[index, ] - (D[index, ] %*% Beta))^2))
       }
     }
@@ -245,9 +258,11 @@ pmf = function(A, r, calcTime, B=NULL, doNorm=TRUE, weights=NULL) {
   if (is.null(weights)) {
     W = Diagonal(nsamples)
     weights = rep(1, nsamples)
+    # SW = W
   }
   else {
     W = Diagonal(nsamples, weights)
+    # SW = Diagonal(nsamples, sqrt(weights))
   }
   # the new basis
   if (is.null(B)) {
@@ -258,18 +273,24 @@ pmf = function(A, r, calcTime, B=NULL, doNorm=TRUE, weights=NULL) {
   startTime = proc.time()[3]
   while (TRUE) {
     lambda = RRbyCV(A, B, weights=NULL)
-    S = t(B) %*% B + diag(lambda, r, r)
+    #S = t(B) %*% B + diag(lambda, r, r)
+    S = crossprod(B) + diag(lambda, r, r)
 
     # faster?
-    C = solve(S, t(B) %*% A) 
+    C = solve(S, crossprod(B, A))
+    # Cold = solve(S, t(B) %*% A)
+    # cat(" No weights", round(mean(abs(C - Cold)), 6))
     # C = solve(S) %*% (t(B) %*% A)
     # set all negative coordinates to 0
     C[C < 0] = 0
 
     lambda = RRbyCV(t(A), t(C), weights=weights)
+    #WtC = SW %*% t(C)
+    #S = crossprod(WtC) + diag(lambda, r, r)
     S = C %*% W %*% t(C) + diag(lambda, r, r)
 
     # faster?
+    #B = t(solve(S, crossprod(WtC, SW %*% t(A))))
     B = t(solve(S, C %*% W %*% t(A)))
     #B = (A %*% W %*% t(C)) %*% solve(S)
     B[B < 0] = 0

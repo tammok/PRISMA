@@ -12,8 +12,8 @@
   constant. Co-occurring features are grouped to further compactify the
   data. See \code{system.file("extdata","sallyPreprocessing.py",
   package="PRISMA")} for a Python script which generates the
-  corresponding .fsally file from a .sally file which increases the
-  loading time via \code{\link{loadPrismaData}}.
+  corresponding .fsally file from a .sally file which reduce the
+  loading time via \code{\link{loadPrismaData}} considerably.
 }
 \usage{
 loadPrismaData(path, maxLines = -1, fastSally = TRUE, alpha = 0.05, skipFeatureCorrelation=FALSE)
@@ -29,7 +29,7 @@ loadPrismaData(path, maxLines = -1, fastSally = TRUE, alpha = 0.05, skipFeatureC
     all lines.
 }
   \item{fastSally}{
-    should the fsally file be used, which drastically increases loading time.
+    should the fsally file be used, which drastically decreases loading time.
 }
   \item{alpha}{
     significance level for the feature tests. If NULL, all features are kept.
