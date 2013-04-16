@@ -1,3 +1,4 @@
+if (getRversion() >= "2.15.1") globalVariables(c("low", "up"))
 # public methods
 estimateDimension = function(prismaData, alpha=0.05, nScrambleSamples=NULL) {
   N = length(prismaData$remapper)
@@ -44,7 +45,6 @@ plot.prismaDimension = function(x, ...) {
 	dimData=x
   require(ggplot2)
   data = dimData$data
-
   p = ggplot(data, aes(x=x, y=var, ymin=low, ymax=up, color=class))
   p + geom_errorbar(width=2) + geom_line() 
 }
