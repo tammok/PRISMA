@@ -147,7 +147,7 @@ reconstructSparsePCA = function(spca) {
 }
 
 plotMatrixFactor = function(B, n.lines=NULL, base.index=NULL, noRowClustering=FALSE, noColClustering=FALSE) {
-  require(gplots)
+  #require(gplots)
   B = as.matrix(B)
   if (!is.null(base.index)) {
     B = B[, base.index]
@@ -251,7 +251,7 @@ RRbyCV = function(Y, D, fold=5, lambdas=10^(-4:2), weights=NULL) {
 }
 
 pmf = function(A, r, calcTime, B=NULL, doNorm=TRUE, weights=NULL) {
-  require(Matrix)
+  #require(Matrix)
   # A should contain the samples in the cols!
   nsamples = ncol(A)
   nfeats = nrow(A)

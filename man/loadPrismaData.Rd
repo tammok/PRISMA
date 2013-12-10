@@ -16,7 +16,8 @@
   loading time via \code{\link{loadPrismaData}} considerably.
 }
 \usage{
-loadPrismaData(path, maxLines = -1, fastSally = TRUE, alpha = 0.05, skipFeatureCorrelation=FALSE)
+loadPrismaData(path, maxLines = -1, fastSally = TRUE,
+               alpha = 0.05, skipFeatureCorrelation=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

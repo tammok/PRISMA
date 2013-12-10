@@ -12,7 +12,7 @@ getDuplicateData = function(prismaData) {
 }
 
 corpusToPrisma = function(corpus, alpha=.05, skipFeatureCorrelation=FALSE) {
-  require(Matrix)
+  #require(Matrix)
   require(tm)
   tdm = TermDocumentMatrix(corpus)
   data = list(data=Matrix(as.matrix(tdm)))
@@ -39,7 +39,7 @@ plot.prisma = function(x, ...) {
 
 # private functions:
 readFSally = function(path, maxLines=-1) {
-  require(Matrix)
+  #require(Matrix)
   f = file(path)
   cat("Reading data...\n")
   data = readLines(f)
@@ -65,7 +65,7 @@ readFSally = function(path, maxLines=-1) {
 }
 
 readSally = function(path, maxLines=-1) {
-  require(Matrix)
+  #require(Matrix)
   f = file(path)
   data = scan(f, what="char", sep=" ", quote="", quiet=TRUE, comment.char="", skip=1, nlines=maxLines)
   close(f)
@@ -173,7 +173,7 @@ count2freq = function(mat) {
 }
 
 count2bin = function(mat) {
-  require(Matrix)
+  #require(Matrix)
   if (inherits(mat, "TsparseMatrix")) {
     ret = mat
   }
@@ -281,7 +281,7 @@ compressByGroup = function(data) {
 # So finally just keep these:
 # data$str[p.adjust(always, "bonf") < 0.05 & p.adjust(never, "bonf") < 0.05]
 ttestNgrams = function(data, mu, alternative=c("greater", "less")) {
-  require(Matrix)
+  #require(Matrix)
   alternative <- match.arg(alternative)
   N = ncol(data)
   nfeats = nrow(data)

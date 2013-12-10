@@ -43,7 +43,7 @@ print.prismaDimension = function(x, ...) {
 
 plot.prismaDimension = function(x, ...) {
 	dimData=x
-  require(ggplot2)
+  #require(ggplot2)
   data = dimData$data
   p = ggplot(data, aes(x=x, y=var, ymin=low, ymax=up, color=class))
   p + geom_errorbar(width=2) + geom_line() 
@@ -61,7 +61,7 @@ scramblePCA = function(mat) {
 }
 
 scrambleFeature = function(mat) {
-  require(Matrix)
+  #require(Matrix)
   N = ncol(mat)
   F = nrow(mat)
   if (inherits(mat, "Matrix")) {
