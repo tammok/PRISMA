@@ -1,7 +1,7 @@
 Package: PRISMA
 Type: Package
 Title: Protocol Inspection and State Machine Analysis
-Version: 0.2-1
+Version: 0.2-2
 Date: 2013-12-10
 Depends: Matrix, gplots, ggplot2
 Suggests: tm
