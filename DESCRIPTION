@@ -4,7 +4,7 @@ Title: Protocol Inspection and State Machine Analysis
 Version: 0.2-2
 Date: 2013-12-10
 Depends: Matrix, gplots, ggplot2
-Suggests: tm
+Suggests: tm (>= 0.6)
 Author: Tammo Krueger, Nicole Kraemer
 Maintainer: Tammo Krueger <tammokrueger@googlemail.com>
 Description: The PRISMA package is capable of loading and processing huge text corpora processed with the sally toolbox (http://www.mlsec.org/sally/). sally acts as a very fast preprocessor which splits the text files into tokens or n-grams. These output files can then be read with the PRISMA package which applies testing-based token selection and has some replicate-aware, highly tuned non-negative matrix factorization and principal component analysis implementation which allows the processing of very big data sets even on desktop machines.
