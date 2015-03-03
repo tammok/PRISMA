@@ -39,7 +39,5 @@ Tammo Krueger <tammokrueger@googlemail.com>
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \examples{
-data(asap)
-\donttest{asapDim = estimateDimension(asap)}
-\donttest{plot(asapDim)}
+# please see the vingette for examles
 }

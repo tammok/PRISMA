@@ -51,8 +51,5 @@ Tammo Krueger <tammokrueger@googlemail.com>
 \code{\link{estimateDimension}}, \code{\link{prismaHclust}}, \code{\link{prismaDuplicatePCA}}, \code{\link{prismaNMF}}
 }
 \examples{
-data(asap)
-\donttest{asapDim = estimateDimension(asap)}
-\donttest{asapNMF = prismaNMF(asap, asapDim, time=120)}
-\donttest{plot(asapNMF, minValue=.2)}
+# please see the vingette for examles
 }

@@ -28,8 +28,5 @@ Tammo Krueger <tammokrueger@googlemail.com>
 \code{\link{estimateDimension}}, \code{\link{prismaHclust}}, \code{\link{prismaDuplicatePCA}}, \code{\link{prismaNMF}}
 }
 \examples{
-data(asap)
-\donttest{asapDim = estimateDimension(asap)}
-\donttest{print(asapDim)}
-\donttest{plot(asapDim)}
+# please see the vingette for examles
 }

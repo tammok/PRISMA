@@ -37,6 +37,5 @@ Tammo Krueger <tammokrueger@googlemail.com>
 \code{\link{hclust}}
 }
 \examples{
-data(asap)
-\donttest{asapHclust = prismaHclust(asap)}
+# please see the vingette for examles
 }

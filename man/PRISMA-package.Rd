@@ -39,10 +39,5 @@ ASAP: Automatic Semantics-Aware Analysis of Network Payloads
 }
 \keyword{ package }
 \examples{
-data(asap)
-plot(asap)
-\donttest{asapDim = estimateDimension(asap)}
-\donttest{plot(asapDim)}
-\donttest{asapNMF = prismaNMF(asap, asapDim, time=120)}
-\donttest{plot(asapNMF, minValue=.2)}
+# please see the vingette for examles
 }

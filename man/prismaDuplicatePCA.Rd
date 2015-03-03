@@ -25,6 +25,5 @@ prismaDuplicatePCA(prismaData)
 Tammo Krueger <tammokrueger@googlemail.com>
 }
 \examples{
-data(asap)
-\donttest{asapPCA = prismaDuplicatePCA(asap)}
+# please see the vingette for examles
 }

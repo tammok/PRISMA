@@ -56,17 +56,5 @@ matrix factorization. \emph{Technical Report 81706, North Carolina State Univers
 Tammo Krueger <tammokrueger@googlemail.com>
 }
 \examples{
-data(asap)
-print(asap)
-plot(asap)
-\donttest{asapDim = estimateDimension(asap)}
-\donttest{print(asapDim)}
-\donttest{plot(asapDim)}
-# let it run for 60 second
-\donttest{asapNMF = prismaNMF(asap, asapDim, time=60)}
-\donttest{plot(asapNMF, minValue=0.2)}
-# ...and for another 60 seconds re-using the results from the previous run
-\donttest{asapNMF = prismaNMF(asap, asapDim, time=60, oldResult=asapNMF)}
-\donttest{plot(asapNMF, minValue=0.2)}
-\donttest{labels = getMatrixFactorizationLabels(asapNMF)}
+# please see the vingette for examles
 }

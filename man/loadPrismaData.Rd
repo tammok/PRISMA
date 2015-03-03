@@ -50,7 +50,7 @@ loadPrismaData(path, maxLines = -1, fastSally = TRUE,
 Tammo Krueger <tammokrueger@googlemail.com>
 }
 \examples{
-# please extract system.file("extdata","asap.tar.gz", package="PRISMA")
-# before running this example
-\donttest{asap = loadPrismaData(system.file("extdata","asap", package="PRISMA"))}
+# please see the vingette for examles
+# please see system.file("extdata","asap.tar.gz", package="PRISMA") for
+# an example sally output
 }
