@@ -1,2 +1,7 @@
+S3method(plot, prisma)
+S3method(print, prisma)
+S3method(plot, prismaDimension)
+S3method(print, prismaDimension)
+S3method(plot, prismaMF)
 export(prismaHclust, prismaDuplicatePCA, prismaNMF, loadPrismaData, getDuplicateData, corpusToPrisma, estimateDimension, plot.prisma, print.prisma, plot.prismaDimension, print.prismaDimension, plot.prismaMF, getMatrixFactorizationLabels)
 import(Matrix, gplots, ggplot2)

@@ -12,14 +12,19 @@ getDuplicateData = function(prismaData) {
 }
 
 corpusToPrisma = function(corpus, alpha=.05, skipFeatureCorrelation=FALSE) {
-  #require(Matrix)
-  require(tm)
-  tdm = TermDocumentMatrix(corpus)
-  data = list(data=Matrix(as.matrix(tdm)))
-  data = preprocessPrismaData(data, alpha, skipFeatureCorrelation)
-  data$path = "tm-Corpus"
-  class(data) = "prisma"
-  return(data)
+    #require(Matrix)
+    if (requireNamespace("tm", quietly = TRUE)) {
+        #require(tm)
+        tdm = tm::TermDocumentMatrix(corpus)
+        data = list(data=Matrix(as.matrix(tdm)))
+        data = preprocessPrismaData(data, alpha, skipFeatureCorrelation)
+        data$path = "tm-Corpus"
+        class(data) = "prisma"
+        return(data)
+    }
+    else {
+
+    }
 }
 
 
