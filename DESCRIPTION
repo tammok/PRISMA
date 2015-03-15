@@ -1,8 +1,8 @@
 Package: PRISMA
 Type: Package
 Title: Protocol Inspection and State Machine Analysis
-Version: 0.2-4
-Date: 2013-12-10
+Version: 0.2-5
+Date: 2015-03-15
 Depends:
     Matrix,
     gplots,
@@ -20,4 +20,4 @@ Description: The PRISMA package is capable of loading and processing huge text
     principal component analysis implementation which allows the processing of
     very big data sets even on desktop machines.
 License: GPL (>=2.0)
-Packaged: 2013-12-10 14:45:32 UTC; tammok
+Packaged: 2015-03-15 17:45:32 UTC; tammok

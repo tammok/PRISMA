@@ -13,7 +13,7 @@ getDuplicateData = function(prismaData) {
 
 corpusToPrisma = function(corpus, alpha=.05, skipFeatureCorrelation=FALSE) {
     #require(Matrix)
-    if (requireNamespace("tm", quietly = TRUE)) {
+    if (requireNamespace("tm", quietly = TRUE) && packageVersion("tm") >= '0.6') {
         #require(tm)
         tdm = tm::TermDocumentMatrix(corpus)
         data = list(data=Matrix(as.matrix(tdm)))
@@ -23,7 +23,7 @@ corpusToPrisma = function(corpus, alpha=.05, skipFeatureCorrelation=FALSE) {
         return(data)
     }
     else {
-
+        stop("Need package tm (>='0.6')")
     }
 }
 
