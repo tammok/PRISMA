@@ -31,8 +31,10 @@ Tammo Krueger <tammokrueger@googlemail.com>
 }
 
 \examples{
-data(thesis)
-thesis
-thesis = corpusToPrisma(thesis, NULL, TRUE)
-thesis
+if (packageVersion("tm") >= '0.6') {
+  data(thesis)
+  thesis
+  thesis = corpusToPrisma(thesis, NULL, TRUE)
+  thesis
+}
 }
