@@ -11,3 +11,7 @@ The package PRISMA is hosted on CRAN, so
     vignette("PRISMA")
 	
 will give you a first impression.
+
+If you're on Centos Linux, install R first;
+
+    sudo yum install R
